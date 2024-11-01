@@ -1,17 +1,19 @@
-from ..modelo.usuarios.usuarioModelo import UsuarioModelo
+from modelo.usuarios.usuarioModelo import UsuarioModelo
+from modelo.conexion import Conexion
 
 class Usuario:
-    def __init__(self, idUsuario, nombre, apellido, fecharegistro, correo, telefono, usuario, clave, seguidores, seguidos, foto, biografia):
+    #Esto simula un constructor vacio y un contructor con atributos. NO MODIFICAR
+    def __init__(self, idUsuario=None, nombre="", apellido="", correo="", telefono=None, usuario="", clave="", foto=None, biografia=""):
         self.idUsuario = idUsuario
         self.nombre = nombre
         self.apellido = apellido
-        self.fecharegistro = fecharegistro
+        self.fecharegistro = None
         self.correo = correo
         self.telefono = telefono
         self.usuario = usuario
         self.clave = clave
-        self.seguidores = seguidores
-        self.seguidos = seguidos
+        self.seguidores = 0
+        self.seguidos = 0
         self.foto = foto
         self.biografia = biografia
 
@@ -90,4 +92,18 @@ class Usuario:
     
 
 
-    #def iniciarSesion(email,contrasena):
+    def iniciarSesion(self,email,contrasena):
+        nueva_conexion=Conexion()
+        usuario_modelo=UsuarioModelo(nueva_conexion)
+        respuesta=usuario_modelo.iniciar_sesion(email,contrasena)
+
+        if respuesta:
+            nueva_conexion.cerrar_conexion()
+            return print("Inicio sesion")
+        
+        else:
+            nueva_conexion.cerrar_conexion()
+            return print("Error al iniciar sesion")
+
+
+

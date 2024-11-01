@@ -1,15 +1,15 @@
-from modelo.usuarios.usuarioModelo import UsuarioControlador
+from modelo.usuarios.usuarioModelo import UsuarioModelo
+from controlador.usuarioControlador import Usuario
+from vista.inicio_sesion import iniciar_sesion
 from modelo.conexion import Conexion
 
-base_datos="artmingle.db"
-conexion=Conexion(base_datos)
+conexion=Conexion()#No tocar
 
-usuario_controlador = UsuarioControlador(conexion)
 
 #usuario_controlador.crear_tabla_usuario()
 #usuario_controlador.insertar_usuario("Prueba", "Prueba", "prueba@gmail.com" , 99999999, "prueba1", "123","","Biografia prueba")
 
-usuario_controlador.mostrar_usuarios()
+iniciar_sesion()
 
 
-conexion.cerrar_conexion
+conexion.cerrar_conexion()#No tocar

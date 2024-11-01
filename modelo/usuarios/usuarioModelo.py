@@ -2,8 +2,9 @@ from ..conexion import Conexion
 from datetime import datetime
 
 class UsuarioModelo:
-    def __init__(self,conexion):
+    def __init__(self, conexion):
         self.conexion = conexion
+
 
     def crear_tabla_usuario(self):
         self.conexion.cursor.execute("CREATE TABLE IF NOT EXISTS usuarios (id_Usuario INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, apellido TEXT NOT NULL, fecha_registro TEXT NOT NULL DEFAULT CURRENT_DATE, correo TEXT NOT NULL UNIQUE, telefono INTEGER NOT NULL, nombre_Usuario TEXT NOT NULL UNIQUE, contrasena TEXT NOT NULL,  seguidores INT DEFAULT 0, seguidos INT DEFAULT 0, foto_Perfil BLOB , biografia TEXT NOT NULL)")
@@ -37,7 +38,6 @@ class UsuarioModelo:
 
 
     def editar_usuario(self, dni, nombre, usuario, rol):
-        """Edita la información de un usuario existente."""
         self.conexion.cursor.execute(
             "UPDATE usuarios SET nombre=?, usuario=?, rol=? WHERE dni=?", 
             (nombre, usuario, rol, dni)
@@ -45,13 +45,17 @@ class UsuarioModelo:
         self.conexion.conexion.commit()
 
     def eliminar_usuario(self, dni):
-        """Elimina un usuario de la base de datos."""
-        self.conexion.cursor.execute("DELETE FROM usuarios WHERE dni=?", (dni,))
+        self.conexion.cursor.execute("DELETE FROM usuarios WHERE dni=?", (dni))
         self.conexion.conexion.commit()
 
-    def cerrar_conexion(self):
-        """Cierra la conexión a la base de datos."""
-        self.conexion.cerrar_conexion()
+
+    def iniciar_sesion(self, correo, contrasena):
+        try:
+            self.conexion.cursor.execute("SELECT * FROM usuarios WHERE correo = ? AND contrasena = ?", (correo, contrasena))
+            usuario = self.conexion.cursor.fetchone()
+            return usuario
+        except Exception  as e:
+            print("Error al buscar mail y contraseña:", e)
 
 
 
