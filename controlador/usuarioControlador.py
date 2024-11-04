@@ -20,6 +20,19 @@ class UsuarioControlador:
         
 
     def registrarse(self, nombre, apellido, correo, telefono, nombre_usuario, contrasena, foto_perfil, biografia):
+        nueva_conexion=Conexion()
+        usuario_modelo=Usuario(nueva_conexion)
+        respuesta=usuario_modelo.insertar_usuario(nombre, apellido, correo, telefono, nombre_usuario, contrasena, foto_perfil, biografia)
+
+        if respuesta:
+            nueva_conexion.cerrar_conexion()
+            print("Usuario Creado")
+            return True
+        
+        else:
+            nueva_conexion.cerrar_conexion()
+            print("Error al crear usuario")
+            return False
         
 
 

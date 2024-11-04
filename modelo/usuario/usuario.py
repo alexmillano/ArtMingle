@@ -109,7 +109,9 @@ class Usuario:
                 (nombre, apellido, correo, telefono, nombre_usuario, contrasena,foto_perfil, biografia)
             )    
             print("Usuario insertado")
+            usuario_creado=Usuario(nombre, apellido, correo, telefono, nombre_usuario, contrasena, foto_perfil, biografia)
             self.conexion.conexion.commit()
+            return usuario_creado
 
         except Exception  as e:
             print("Error al insertar usuario:", e)

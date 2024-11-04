@@ -19,18 +19,23 @@ def iniciar_sesion():
 
     mensaje_error = None
 
-    def evento_boton():
+    def evento_boton_iniciar_sesion():
         nonlocal mensaje_error
         respuesta = usuario_controlador.iniciarSesion(email_entrada.get(), contrasena_entrada.get())
 
         if not respuesta and mensaje_error is None:
             mensaje_error = tk.Label(root, text="Datos incorrectos", fg="red")
             mensaje_error.pack()
+
+    def evento_boton_registrarse():
+        from vista.registrarse import registrarse
+        root.destroy()
+        registrarse()
         
 
-    boton_iniciar_sesion = tk.Button(root, text="Ingresar", command=evento_boton)
+    boton_iniciar_sesion = tk.Button(root, text="Ingresar", command=evento_boton_iniciar_sesion)
     boton_iniciar_sesion.pack()
-    boton_registrarse = tk.Button(root, text="Ingresar", command=evento_boton)
+    boton_registrarse = tk.Button(root, text="Registrarse", command=evento_boton_registrarse)
     boton_registrarse.pack()
 
     root.mainloop()
