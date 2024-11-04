@@ -1,8 +1,8 @@
 import tkinter as tk;
-from controlador.usuarioControlador import Usuario
+from controlador.usuarioControlador import UsuarioControlador
 
 def iniciar_sesion():
-    usuario_controlador = Usuario()
+    usuario_controlador = UsuarioControlador()
 
     root = tk.Tk()
     root.title("Iniciar sesión")

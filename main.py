@@ -1,5 +1,5 @@
-from modelo.usuarios.usuarioModelo import UsuarioModelo
-from controlador.usuarioControlador import Usuario
+from modelo.usuario.usuario import Usuario
+from controlador.usuarioControlador import UsuarioControlador
 from vista.inicio_sesion import iniciar_sesion
 from modelo.conexion import Conexion
 
