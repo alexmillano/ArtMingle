@@ -2,8 +2,8 @@ from ..conexion import Conexion
 from datetime import datetime
 
 class Usuario:
-    #Esto simula un constructor vacio y un contructor con atributos. NO MODIFICAR
-    def __init__(self, conexion = None, idUsuario=None, nombre="", apellido="", correo="", telefono=None, usuario="", clave="", foto=None, biografia=""):
+    #EstoNO MODIFICAR
+    def __init__(self, conexion , idUsuario, nombre, apellido, correo, telefono, usuario, clave, biografia, foto=None):
         self.conexion = conexion
         self.idUsuario = idUsuario
         self.nombre = nombre

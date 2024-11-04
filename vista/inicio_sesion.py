@@ -1,4 +1,4 @@
-import tkinter as tk;
+import tkinter as tk
 from controlador.usuarioControlador import UsuarioControlador
 
 def iniciar_sesion():
@@ -17,10 +17,20 @@ def iniciar_sesion():
     contrasena_entrada = tk.Entry(root, show="*")
     contrasena_entrada.pack()
 
-    def evento_boton():
-        usuario_controlador.iniciarSesion(email_entrada.get(), contrasena_entrada.get())
+    mensaje_error = None
 
-    boton = tk.Button(root, text="Ingresar", command=evento_boton)
-    boton.pack()
+    def evento_boton():
+        nonlocal mensaje_error
+        respuesta = usuario_controlador.iniciarSesion(email_entrada.get(), contrasena_entrada.get())
+
+        if not respuesta and mensaje_error is None:
+            mensaje_error = tk.Label(root, text="Datos incorrectos", fg="red")
+            mensaje_error.pack()
+        
+
+    boton_iniciar_sesion = tk.Button(root, text="Ingresar", command=evento_boton)
+    boton_iniciar_sesion.pack()
+    boton_registrarse = tk.Button(root, text="Ingresar", command=evento_boton)
+    boton_registrarse.pack()
 
     root.mainloop()

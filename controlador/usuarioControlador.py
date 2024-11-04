@@ -10,11 +10,18 @@ class UsuarioControlador:
 
         if respuesta:
             nueva_conexion.cerrar_conexion()
-            return print("Inicio sesion")
+            print("Inicio sesion")
+            return True
         
         else:
             nueva_conexion.cerrar_conexion()
-            return print("Error al iniciar sesion")
+            print("Error al iniciar sesion")
+            return False
+        
+
+    def registrarse(self, nombre, apellido, correo, telefono, nombre_usuario, contrasena, foto_perfil, biografia):
+        
+
 
 
 
