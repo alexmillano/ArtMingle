@@ -20,6 +20,7 @@ class UsuarioControlador:
         
 
     def registrarse(self, nombre, apellido, correo, telefono, nombre_usuario, contrasena, foto_perfil, biografia):
+        #VALIDAR PARAMETROS DE ENTRADA
         nueva_conexion=Conexion()
         usuario_modelo=Usuario(nueva_conexion)
         respuesta=usuario_modelo.insertar_usuario(nombre, apellido, correo, telefono, nombre_usuario, contrasena, foto_perfil, biografia)

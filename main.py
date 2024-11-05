@@ -6,8 +6,10 @@ from modelo.conexion import Conexion
 conexion=Conexion()#No tocar
 
 
-#usuario_controlador.crear_tabla_usuario()
-#usuario_controlador.insertar_usuario("Prueba", "Prueba", "prueba@gmail.com" , 99999999, "prueba1", "123","","Biografia prueba")
+#usuario=Usuario(conexion)
+#usuario.crear_tabla_usuario()
+#usuario.insertar_usuario("Prueba", "Prueba", "prueba@gmail.com" , 99999999, "prueba1", "123","","Biografia prueba")
+#usuario.mostrar_usuarios()
 
 iniciar_sesion()
 

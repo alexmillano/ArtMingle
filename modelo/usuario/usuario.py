@@ -3,7 +3,7 @@ from datetime import datetime
 
 class Usuario:
     #EstoNO MODIFICAR
-    def __init__(self, conexion , idUsuario, nombre, apellido, correo, telefono, usuario, clave, biografia, foto=None):
+    def __init__(self,conexion=None, idUsuario=None,nombre="", apellido="", correo="", telefono=None, usuario="", clave="", biografia="", foto=None):
         self.conexion = conexion
         self.idUsuario = idUsuario
         self.nombre = nombre
@@ -16,7 +16,7 @@ class Usuario:
         self.seguidores = 0
         self.seguidos = 0
         self.foto = foto
-        self.biografia = biografia    
+        self.biografia = biografia
 
 
     def get_idUsuario(self):
@@ -109,7 +109,9 @@ class Usuario:
                 (nombre, apellido, correo, telefono, nombre_usuario, contrasena,foto_perfil, biografia)
             )    
             print("Usuario insertado")
-            usuario_creado=Usuario(nombre, apellido, correo, telefono, nombre_usuario, contrasena, foto_perfil, biografia)
+
+            id_usuario = self.conexion.cursor.lastrowid
+            usuario_creado=Usuario(id_usuario,nombre, apellido, correo, telefono,contrasena, foto_perfil, biografia)
             self.conexion.conexion.commit()
             return usuario_creado
 
@@ -131,9 +133,13 @@ class Usuario:
         )
         self.conexion.conexion.commit()
 
-    def eliminar_usuario(self, dni):
-        self.conexion.cursor.execute("DELETE FROM usuarios WHERE dni=?", (dni))
-        self.conexion.conexion.commit()
+    def eliminar_usuario(self, idUsuario):
+        try :
+            self.conexion.cursor.execute("DELETE FROM usuarios WHERE id_Usuario=?", (idUsuario,))
+            self.conexion.conexion.commit()
+            print("Usuario eliminado")
+        except Exception  as e:
+            print("Error al eliminar el usuario:", e)
 
 
     def iniciar_sesion(self, correo, contrasena):
