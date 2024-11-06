@@ -3,6 +3,7 @@ from controlador.usuarioControlador import UsuarioControlador
 from vista.inicio_sesion import iniciar_sesion
 from modelo.conexion import Conexion
 
+
 conexion=Conexion()#No tocar
 
 
@@ -15,3 +16,7 @@ iniciar_sesion()
 
 
 conexion.cerrar_conexion()#No tocar
+
+
+
+#python -m unittest pruebas.py

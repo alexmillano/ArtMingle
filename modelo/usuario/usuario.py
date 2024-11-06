@@ -152,6 +152,20 @@ class Usuario:
 
 
 
+    def verificar_usuarioycorreo(self, nombre_usuario,correo):
+        self.conexion.cursor.execute("SELECT * FROM usuarios WHERE nombre_Usuario = ? OR correo = ?", (nombre_usuario, correo))
+        usuario_existente = self.conexion.cursor.fetchone()
+
+        if usuario_existente:
+            if usuario_existente[6] == nombre_usuario:  
+                return "usuario"  
+            if usuario_existente[4] == correo:  
+                return "correo"           
+        else:
+            return True 
+
+
+
     """" POR SI HAY QUE MODIFICAR ALGO EN LA TABLA, LA BORRA Y LA VUELVE A CREAR 
     """
     def recrear_tabla_usuarios(self):
