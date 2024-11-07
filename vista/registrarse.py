@@ -73,6 +73,20 @@ def registrarse():
             mensaje_error = tk.Label(root, text="Todos los campos son obligatorios.", fg="red", bg="#f8f8f8", font=("Comic Sans MS", 10, "italic"))
             mensaje_error.pack(pady=5)
             return
+
+
+        if not telefono_entrada.get().isdigit():
+            if mensaje_error:
+                mensaje_error.destroy()
+            mensaje_error = tk.Label(root, text="El teléfono solo debe contener números.", fg="red", bg="#f8f8f8", font=("Comic Sans MS", 10, "italic"))
+            mensaje_error.pack(pady=5)
+            return
+        
+        if "@" not in email_entrada.get():
+            mensaje_error = tk.Label(root, text="El correo debe contener '@'.", fg="red", bg="#f8f8f8", font=("Comic Sans MS", 10, "italic"))
+            mensaje_error.pack(pady=5)
+            return
+
         
         validar_usuarioycorreo = usuario_controlador.validarUsuario(usuario_entrada.get(), email_entrada.get())
         if validar_usuarioycorreo == "correo":
