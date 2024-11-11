@@ -83,6 +83,8 @@ def registrarse():
             return
         
         if "@" not in email_entrada.get():
+            if mensaje_error:
+                mensaje_error.destroy()
             mensaje_error = tk.Label(root, text="El correo debe contener '@'.", fg="red", bg="#f8f8f8", font=("Comic Sans MS", 10, "italic"))
             mensaje_error.pack(pady=5)
             return
@@ -106,9 +108,12 @@ def registrarse():
 
         if respuesta:
             mensaje_error = tk.Label(root, text="Usuario creado.", fg="green", bg="#f8f8f8", font=("Comic Sans MS", 10, "italic"))
+            root.destroy()
+            from vista.inicio_sesion import iniciar_sesion
+            iniciar_sesion()
         else:
             mensaje_error = tk.Label(root, text="No se pudo crear el usuario.", fg="red", bg="#f8f8f8", font=("Comic Sans MS", 10, "italic"))
-        mensaje_error.pack(pady=5)
+            mensaje_error.pack(pady=5)
 
     boton_registrarse = tk.Button(root, text="Registrarse", command=evento_boton_registrarse, font=("Comic Sans MS", 10), bg="#ff6347", fg="white", width=18, height=1, bd=0, relief="solid", activebackground="#e74c3c")
     boton_registrarse.pack(pady=10)
